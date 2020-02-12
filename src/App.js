@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import './App.css';
 
+import Form from './components/Form/Form';
+
 const NavBar = () => (
 	<div className="navbar">
 		<h3>Task Manager</h3>
@@ -19,6 +21,7 @@ const Template = (props) => (
 			<li>Task 2</li>
 			<li>Task 3</li>
 		</ul>
+		<Form />
 	</div>
 );
 
