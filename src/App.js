@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
+
 import './App.css';
 
 import Form from './components/Form/Form';
+import TimesList from './components/times-list';
+import AddTimeEntryForm from './components/add-time-entry-form';
 
 const NavBar = () => (
 	<div className="navbar">
@@ -36,6 +39,9 @@ class App extends Component {
 				<div>
 					<Route exact path="/" component={CurrentTasks} />
 					<Route path="/completed" component={CompletedTasks} />
+					<h1>Just Clock It</h1>
+					<TimesList />
+					<AddTimeEntryForm />
 				</div>
 			</BrowserRouter>
 		);
