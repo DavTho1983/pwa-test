@@ -7,7 +7,8 @@ import './App.css';
 
 import Form from './components/Form/Form';
 import Login from './Login';
-import PrivateRoute from './PrivateRoute';
+import CoachRoute from './CoachRoute';
+import AdminRoute from './components/admin-route';
 import TimesList from './components/times-list';
 import AddTimeEntryForm from './components/add-time-entry-form';
 
@@ -40,8 +41,8 @@ class App extends Component {
 			<AuthProvider>
 				<BrowserRouter>
 					<div>
-						<PrivateRoute exact path="/" component={CurrentTasks} />
-						<PrivateRoute exact path="/completed" component={CompletedTasks} />
+						<CoachRoute exact path="/" component={CurrentTasks} />
+						<AdminRoute exact path="/completed" component={CompletedTasks} />
 						<Route exact path="/login" component={Login} />
 					</div>
 				</BrowserRouter>
