@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
+import firebase from './firebase';
+import { AuthProvider } from './Auth';
 
 import './App.css';
 
 import Form from './components/Form/Form';
+import Login from './Login';
+import PrivateRoute from './PrivateRoute';
 import TimesList from './components/times-list';
 import AddTimeEntryForm from './components/add-time-entry-form';
 
@@ -19,12 +23,10 @@ const Template = (props) => (
 	<div>
 		<NavBar />
 		<p className="page-info">{props.title}:</p>
-		<ul className={props.status}>
-			<li>Task 1</li>
-			<li>Task 2</li>
-			<li>Task 3</li>
-		</ul>
+		{props.status === 'Current' && <TimesList />}
+		{props.status === 'Completed' && <AddTimeEntryForm />}
 		<Form />
+		<button onClick={() => firebase.auth().signOut()}>Sign out</button>
 	</div>
 );
 
@@ -35,15 +37,15 @@ const CompletedTasks = () => <Template title="Completed Tasks" status="Completed
 class App extends Component {
 	render() {
 		return (
-			<BrowserRouter>
-				<div>
-					<Route exact path="/" component={CurrentTasks} />
-					<Route path="/completed" component={CompletedTasks} />
-					<h1>Just Clock It</h1>
-					<TimesList />
-					<AddTimeEntryForm />
-				</div>
-			</BrowserRouter>
+			<AuthProvider>
+				<BrowserRouter>
+					<div>
+						<PrivateRoute exact path="/" component={CurrentTasks} />
+						<PrivateRoute exact path="/completed" component={CompletedTasks} />
+						<Route exact path="/login" component={Login} />
+					</div>
+				</BrowserRouter>
+			</AuthProvider>
 		);
 	}
 }

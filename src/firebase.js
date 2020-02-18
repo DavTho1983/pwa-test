@@ -1,16 +1,18 @@
 import firebase from 'firebase/app';
+import 'firebase/auth';
 import 'firebase/firestore';
 
 var firebaseConfig = {
 	apiKey: 'AIzaSyAKQK_wDmEHA_MwXzn2RFTvdmLtwivTBFA',
-	authDomain: 'clock-it-39ffd.firebaseapp.com',
-	databaseURL: 'https://clock-it-39ffd.firebaseio.com',
+	authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
+	databaseURL: process.env.REACT_APP_FIREBASE_DATABASE,
 	projectId: 'clock-it-39ffd',
-	storageBucket: 'clock-it-39ffd.appspot.com',
-	messagingSenderId: '1059366266500',
-	appId: '1:1059366266500:web:50b151fca059068f0044d1',
-	measurementId: 'G-55JBL6ZEN8'
+	storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
+	appId: process.env.REACT_APP_ID,
+	measurementId: process.env.REACT_APP_MEASUREMENT_ID
 };
+
 firebase.initializeApp(firebaseConfig);
 
 export default firebase;
